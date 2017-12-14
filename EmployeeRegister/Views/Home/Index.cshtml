@@ -1,0 +1,121 @@
+﻿@model IEnumerable<EmployeeViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="jumbotron">
+    <h1>Employee Register</h1>
+    <a href="~/Employees" class="btn btn-info">See all employees &raquo;</a>
+    <a href="~/Employees/Create" class="btn btn-default">Register yourself &raquo;</a>
+</div>
+
+<!--using ajax form supported in MVC -->
+@*@using (Ajax.BeginForm(
+                                new AjaxOptions
+                                {
+                                    HttpMethod = "GET",
+                                    UpdateTargetId = "searchResult",
+                                    InsertionMode = InsertionMode.Replace
+                                }))
+    {
+        <div class="row">
+
+                    @Html.DropDownList("searchBy", new List<SelectListItem>
+                       { new SelectListItem{Text="Full Name", Value="FullName"},
+                         new SelectListItem{Text="First Name", Value="FirstName"},
+                         new SelectListItem{Text="Last Name", Value="LastName"}}, "Please select term to search ",
+                         new
+                         {
+                             style = "height: 34px; margin: 5px;",
+                             @class = "col-xs-3"
+                         })
+
+
+                    @Html.DropDownList("searchOption", new List<SelectListItem>
+                       { new SelectListItem{Text="Start With", Value="StartsWith"},
+                         new SelectListItem{Text="Contains", Value="Contains"},
+                         new SelectListItem{Text="Exact", Value="Exact"}}, "Please select method to search",
+                          new
+                          {
+                              style = "height: 34px; margin: 5px;",
+                              @class = "col-xs-3"
+                          })
+
+
+                    <input style="height: 34px ; margin: 5px;" type="text" name="name" class="form-control col-xs-5" placeholder="Search for employees...">
+
+
+                    <button style="height: 34px ; margin: 5px;" type="submit" class="btn btn-default">Go!</button>
+
+        </div>
+    }*@
+
+
+<!--using custom ajax form, see script on RegisterEmployees.js-->
+<form data-custom-ajax='true' action="@Url.Action("Index")" method="get" data-custom-target="#searchResult" data-custom-count="#searchCount">
+    <div class="row">
+        @Html.DropDownList("searchBy", new List<SelectListItem>
+                   { new SelectListItem{Text="Full Name", Value="FullName"},
+                     new SelectListItem{Text="First Name", Value="FirstName"},
+                     new SelectListItem{Text="Last Name", Value="LastName"}}, "Please select term to search ",
+                     new
+                     {
+                         style = "height: 34px; margin: 5px;",
+                         @class = "col-xs-3"
+                     })
+
+
+        @Html.DropDownList("searchOption", new List<SelectListItem>
+                   { new SelectListItem{Text="Start With", Value="StartsWith"},
+                     new SelectListItem{Text="Contains", Value="Contains"},
+                     new SelectListItem{Text="Exact", Value="Exact"}}, "Please select method to search",
+                      new
+                      {
+                          style = "height: 34px; margin: 5px;",
+                          @class = "col-xs-3"
+                      })
+
+
+        <input style="height: 34px ; margin: 5px;" type="text" name="name" class="form-control col-xs-5" placeholder="Search for employees...">
+    </div>
+    <div class="row">
+        @Html.Label("Sort list:",
+                    new
+                    {
+                        style = "height: 34px; margin: 5px;",
+                        @class = "col-xs-3"
+                    })
+
+        @Html.DropDownList("sortBy", new List<SelectListItem>
+                   { new SelectListItem{Text="First Name", Value="FirstName"},
+                     new SelectListItem{Text="Last Name", Value="LastName"},
+                     new SelectListItem{Text="Salary", Value="Salary"}}, 
+                     new
+                     {
+                         style = "height: 34px; margin: 5px;",
+                         @class = "col-xs-3"
+                     })
+
+
+        @Html.DropDownList("sortOption", new List<SelectListItem>
+                   { new SelectListItem{Text="Ascending", Value="OrderBy"},
+                     new SelectListItem{Text="Descending", Value="OrderByDescending"}},
+                      new
+                      {
+                          style = "height: 34px; margin: 5px;",
+                          @class = "col-xs-3"
+                      })
+
+        </div>
+        <button style="height: 34px ; margin: 5px;" type="submit" class="btn btn-default">Go!</button>
+</form>
+
+
+
+<div id="searchCount">
+</div>
+
+
+@Html.Partial("EmployeesVMList", Model)

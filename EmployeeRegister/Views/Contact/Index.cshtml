@@ -1,0 +1,89 @@
+﻿@model EmployeeRegister.Models.Employee
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Send message to employee</h2>
+<div class="col col-xs-6" style="height: 400px;">
+
+    <form data-custom-ajax='true' class="sendContact" data-custom-target="#employeeDetail" action="@Url.Action("Index")" method="get">
+        <div class="form-group">
+            <label for="name">Employee Name:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea class="form-control" rows="5" name="message"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Option 1</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Option 2</label>
+            </div>
+            <div class="checkbox disabled">
+                <label><input type="checkbox" value="" disabled>Option 3</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline"><input type="radio" name="optradio">Option 1</label>
+            <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+            <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+        </div>
+        <button style="height: 34px ; margin: 5px;" type="submit" class="btn btn-default">Submit message!</button>
+    </form>
+ </div>
+    <div class="col col-xs-6" style="height: 400px;" id="employeeDetail">
+        <h4>Employee details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Salary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Position)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Position)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+
+        </dl>
+    </div>

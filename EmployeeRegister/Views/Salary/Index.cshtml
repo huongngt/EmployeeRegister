@@ -1,0 +1,24 @@
+﻿@model EmployeeRegister.Models.SalaryRangeViewModel
+
+<h2>Show employees by salary range</h2>
+
+<div class="dropdown">
+    @Html.DropDownListFor(m => m.SelectedRange,
+    new SelectList(Model.SalaryRange, "Key", "Value"),
+    "---Select Salary range---",
+    new
+    {
+        Class = "ddlStyle",
+        id = "ddlEmployee"
+    })
+
+</div>
+
+<h3>Employees with salary </h3>
+
+<div>
+    <div id="partialDiv">
+         @{Html.RenderAction("GetSalaryRanges");}
+        </div>
+
+</div>
